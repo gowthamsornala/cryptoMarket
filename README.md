@@ -34,14 +34,42 @@ This application fetches cryptocurrency market updates from the CoinGecko API.
 
 ### API Endpoints
 
+Register new user:
+POST   /api/v1/register
+
+Generate token:
+POST   /api/v1/login
+
 List all coins:
-   /api/coins?page_num=<page_num>&per_page=<per_page>
+GET   /api/coins?page_num=<page_num>&per_page=<per_page>
 
 List all categories:
-   /api/categories
+GET   /api/categories
 
 Get coin details by ID:
-   /api/coin/<coin_id>
+GET   /api/coin/<coin_id>
+
+## Authentication with JWT Token
+### Register a New User: 
+   To use the API, you need to register a new user.
+   POST /api/v1/register
+   #### Request Body:
+   { "username": "john" }
+   #### Response:
+   { "message": "User registered successfully." }
+### Login to Get Token: 
+   After registering, log in to get a JWT token.
+   POST /api/v1/login
+   #### Request Body:
+   { "username": "john" }
+   #### Response:
+   { "token": "your_jwt_token_here" }
+### Use the Token: 
+   Include the JWT token in the Authorization header when making requests to the protected endpoints.
+   #### Example:
+   GET /api/v1/coins
+   #### Header:
+   Authorization: Bearer your_jwt_token_here
 
 ## Docker
 ### Build the Docker Image
