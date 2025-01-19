@@ -19,7 +19,7 @@ This application fetches cryptocurrency market updates from the CoinGecko API.
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/cryptoMarket.git
+   git clone https://github.com/gowthamsornala/cryptoMarket.git
    cd cryptoMarket
 
 2. Create a virtual environment and activate it:
