@@ -1,0 +1,119 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "description": "This is the API documentation for the Crypto API.",
+      "version": "1.0.0",
+      "title": "Crypto API"
+    },
+    "host": "localhost:5000",
+    "basePath": "/api/v1",
+    "schemes": [
+      "http"
+    ],
+    "paths": {
+      "/coins": {
+        "get": {
+          "summary": "List all coins",
+          "description": "Fetches a list of all coins including their ID.",
+          "parameters": [
+            {
+              "name": "page_num",
+              "in": "query",
+              "type": "integer",
+              "required": false,
+              "description": "Page number for pagination"
+            },
+            {
+              "name": "per_page",
+              "in": "query",
+              "type": "integer",
+              "required": false,
+              "description": "Number of items per page"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Coin"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/categories": {
+        "get": {
+          "summary": "List all categories",
+          "description": "Fetches a list of all coin categories.",
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Category"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/coin/{coin_id}": {
+        "get": {
+          "summary": "Get coin details by ID",
+          "description": "Fetches details of a specific coin by its ID.",
+          "parameters": [
+            {
+              "name": "coin_id",
+              "in": "path",
+              "type": "string",
+              "required": true,
+              "description": "ID of the coin"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "schema": {
+                "$ref": "#/definitions/Coin"
+              }
+            },
+            "404": {
+              "description": "Coin not found"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Coin": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "symbol": {
+            "type": "string"
+          }
+        }
+      },
+      "Category": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+  

@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, current_app
 from dotenv import load_dotenv
 import os
 
@@ -13,8 +13,10 @@ def create_app():
 
     with app.app_context():
         from .routes import coins, categories, auth
+        from .swagger import swagger_blueprint
         app.register_blueprint(coins.bp)
         app.register_blueprint(categories.bp)
         app.register_blueprint(auth.bp)
+        app.register_blueprint(swagger_blueprint, url_prefix='/')
 
     return app
